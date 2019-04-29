@@ -23,7 +23,6 @@ tasks:
       $if: 'tasks_for == "github-pull-request"'
       then: ${event.pull_request.head.repo.html_url}
       else: ${event.repository.html_url}
-
   in:
     - taskId: {$eval: as_slugid("code_checks")}
       provisionerId: aws-provisioner-v1
@@ -76,7 +75,7 @@ tasks:
         maxRunTime: 3600
         image: python:3-alpine
         env:
-          TAG: registry.hub.docker.com/mozilla/taskboot
+          TAG: registry.hub.docker.com/babadie/taskboot
           VERSION:
             $if: 'head_branch[:10] == "refs/tags/"'
             then: {$eval: 'head_branch[10:]' }
